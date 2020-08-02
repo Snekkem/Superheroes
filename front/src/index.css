@@ -1,0 +1,34 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
+*,
+html,
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    background-image: url("https://www.kolpaper.com/wp-content/uploads/2020/03/marvel-wallpaper-1.jpg");
+    background-size: cover;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+input,
+textarea{
+    color: #ffffff;
+    resize: none;
+}
+
+.fileContainer .uploadPicturesWrapper {
+    width: 30% !important;
+}
+
+.container {
+    background-color: rgba(46, 11, 56, 0.94);
+    padding-bottom: 60px;
+}

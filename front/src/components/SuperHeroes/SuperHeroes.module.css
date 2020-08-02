@@ -1,0 +1,32 @@
+.mainContainer {
+    padding: 20px;
+    color: #ffffff;
+}
+
+.nikname {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.card {
+    transition: .3s;
+    margin-top: 40px;
+    color: #ffffff;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.imgContainer {
+    position: relative;
+    max-width: 350px;
+}
+
+.btnDelete {
+    position: absolute;
+    right: 5%;
+    top: -3%;
+}

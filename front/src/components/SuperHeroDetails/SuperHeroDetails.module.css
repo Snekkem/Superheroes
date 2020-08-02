@@ -1,0 +1,43 @@
+.detailsContainer {
+    padding: 5px 20px;
+    color: #ffffff;
+}
+
+.listSuperPowers {
+    line-height: 35px;
+    padding-bottom: 10px;
+}
+
+.imgRelative {
+    margin-top: 10px;
+    position: relative;
+    width: 400px;
+}
+
+.images {
+    margin-top: 20px;
+    list-style: none;
+    max-height: 250px;
+    height: 240px;
+}
+
+.deleteImg {
+    border-radius: 50%;
+
+    position: absolute;
+    right: -5%;
+    top: -1%;
+}
+
+.swiper-container {
+    width: 200px;
+}
+
+.swiper-wrapper {
+    padding-inline-start: 0;
+}
+
+.imagesContainer {
+    padding-top: 20px;
+    display: flex;
+}
