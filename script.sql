@@ -5,7 +5,7 @@
 -- Dumped from database version 12.3
 -- Dumped by pg_dump version 12.3
 
--- Started on 2020-08-01 22:04:56
+-- Started on 2020-08-02 12:48:18
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,11 +19,216 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 2849 (class 1262 OID 33534)
+-- TOC entry 2843 (class 1262 OID 33534)
 -- Name: Superhero; Type: DATABASE; Schema: -; Owner: postgres
 --
 
 CREATE DATABASE "Superhero" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Russian_Russia.1251' LC_CTYPE = 'Russian_Russia.1251';
+
+
+ALTER DATABASE "Superhero" OWNER TO postgres;
+
+\connect "Superhero"
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 205 (class 1259 OID 33559)
+-- Name: Images; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Images" (
+    "ID" integer NOT NULL,
+    "SuperheroID" integer NOT NULL,
+    "Path" text NOT NULL
+);
+
+
+ALTER TABLE public."Images" OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 33557)
+-- Name: Images_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Images_ID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Images_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2844 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: Images_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Images_ID_seq" OWNED BY public."Images"."ID";
+
+
+--
+-- TOC entry 207 (class 1259 OID 33575)
+-- Name: SuperPowers; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."SuperPowers" (
+    "ID" integer NOT NULL,
+    "SuperheroID" integer NOT NULL,
+    "SuperPower" text NOT NULL
+);
+
+
+ALTER TABLE public."SuperPowers" OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 33573)
+-- Name: SuperPowers_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."SuperPowers_ID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."SuperPowers_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2845 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: SuperPowers_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."SuperPowers_ID_seq" OWNED BY public."SuperPowers"."ID";
+
+
+--
+-- TOC entry 203 (class 1259 OID 33537)
+-- Name: Superheroes; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Superheroes" (
+    "ID" integer NOT NULL,
+    "NikName" text NOT NULL,
+    "RealName" text NOT NULL,
+    "OriginDescription" text NOT NULL,
+    "CatchPhrase" text NOT NULL
+);
+
+
+ALTER TABLE public."Superheroes" OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 33535)
+-- Name: Superheroes_ID_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Superheroes_ID_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Superheroes_ID_seq" OWNER TO postgres;
+
+--
+-- TOC entry 2846 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: Superheroes_ID_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Superheroes_ID_seq" OWNED BY public."Superheroes"."ID";
+
+
+--
+-- TOC entry 2703 (class 2604 OID 33562)
+-- Name: Images ID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Images" ALTER COLUMN "ID" SET DEFAULT nextval('public."Images_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 2704 (class 2604 OID 33578)
+-- Name: SuperPowers ID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."SuperPowers" ALTER COLUMN "ID" SET DEFAULT nextval('public."SuperPowers_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 2702 (class 2604 OID 33540)
+-- Name: Superheroes ID; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Superheroes" ALTER COLUMN "ID" SET DEFAULT nextval('public."Superheroes_ID_seq"'::regclass);
+
+
+--
+-- TOC entry 2708 (class 2606 OID 33567)
+-- Name: Images Images_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Images"
+    ADD CONSTRAINT "Images_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2710 (class 2606 OID 33583)
+-- Name: SuperPowers SuperPowers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."SuperPowers"
+    ADD CONSTRAINT "SuperPowers_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2706 (class 2606 OID 33545)
+-- Name: Superheroes Superheroes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Superheroes"
+    ADD CONSTRAINT "Superheroes_pkey" PRIMARY KEY ("ID");
+
+
+--
+-- TOC entry 2711 (class 2606 OID 33568)
+-- Name: Images Images_SuperheroID_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Images"
+    ADD CONSTRAINT "Images_SuperheroID_fkey" FOREIGN KEY ("SuperheroID") REFERENCES public."Superheroes"("ID");
+
+
+-- Completed on 2020-08-02 12:48:18
+
+--
+-- PostgreSQL database dump complete
+--
 
 
 ALTER DATABASE "Superhero" OWNER TO postgres;
@@ -47,15 +252,15 @@ SET row_security = off;
 -- Data for Name: Superheroes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."Superheroes" VALUES (2, 'Captain America', 'РЎС‚РёРІРµРЅ Р РѕРґР¶РµСЂСЃ', 'Р“РµСЂРѕР№ РІРЅРµ РІСЂРµРјРµРЅРё РЎС‚РёРІ Р РѕРґР¶РµСЂСЃ Р±РѕСЂРµС‚СЃСЏ Р·Р° СЃРІРѕР±РѕРґСѓ РІ РєР°С‡РµСЃС‚РІРµ РЅРµРїРѕРєРѕР»РµР±РёРјРѕРіРѕ РљР°РїРёС‚Р°РЅР° РђРјРµСЂРёРєР°.', 'РќР°С€Р° С†РµР»СЊ... СЃРїР°СЃС‚Рё РєР°Рє РјРѕР¶РЅРѕ Р±РѕР»СЊС€Рµ Р»СЋРґРµР№. РќРѕ СЃРїР°СЃС‚Рё РІСЃРµС… РЅРµРІРѕР·РјРѕР¶РЅРѕ, Рё РµСЃР»Рё РЅРµ РїСЂРёРЅСЏС‚СЊ СЌС‚Рѕ РєР°Рє РґР°РЅРЅРѕСЃС‚СЊ, РІ РґСЂСѓРіРѕР№ СЂР°Р· РїРѕРіРёР±РЅСѓС‚ РІСЃРµ.');
-INSERT INTO public."Superheroes" VALUES (3, 'Ironman', 'РўРѕРЅРё РЎС‚Р°СЂРє', 'Р­РєСЃС†РµРЅС‚СЂРёС‡РЅС‹Р№ РіРµРЅРёР№, РјРёР»Р»РёРѕРЅРµСЂ, РґР°РјСЃРєРёР№ СѓРіРѕРґРЅРёРє Рё С„РёР»Р°РЅС‚СЂРѕРї РўРѕРЅРё РЎС‚Р°СЂРє С‚Р°РєР¶Рµ СЏРІР»СЏРµС‚СЃСЏ СЃСѓРїРµСЂРіРµСЂРѕРµРј РІ Р±СЂРѕРЅРµ, РёР·РІРµСЃС‚РЅС‹Рј РєР°Рє Р–РµР»РµР·РЅС‹Р№ Р§РµР»РѕРІРµРє.', 'Р“РµРЅРёР№, РјРёР»Р»РёР°СЂРґРµСЂ, РїР»СЌР№Р±РѕР№, С„РёР»Р°РЅС‚СЂРѕРї.');
-INSERT INTO public."Superheroes" VALUES (4, 'Thor', 'РўРѕСЂ РћРґРёРЅСЃРѕРЅ', 'РњРѕРіСѓС‰РµСЃС‚РІРµРЅРЅС‹Р№ Р±РѕРі РіСЂРѕРјР° РўРѕСЂ, РґРѕСЃС‚РѕР№РЅС‹Р№ РЅРѕСЃРёС‚СЊ РІРµР»РёС‡Р°Р№С€РµРµ РѕСЂСѓР¶РёРµ РІРѕ РІСЃРµР»РµРЅРЅРѕР№ вЂ“ РІРѕР»С€РµР±РЅС‹Р№ РјРѕР»РѕС‚ РњСЊС‘Р»СЊРЅРёСЂ вЂ” РЅРёРєРѕРіРґР° РЅРµ РїРµСЂРµСЃС‚Р°С‘С‚ СЃСЂР°Р¶Р°С‚СЊСЃСЏ Р·Р° РїСЂР°РІРѕРµ РґРµР»Рѕ Рё Р·Р°С‰РёС‰Р°С‚СЊ Р»СЋР±РёРјСѓСЋ Р—РµРјР»СЋ.', 'РЇ РўРѕСЂ, СЃС‹РЅ РћРґРёРЅР°, Рё РїРѕРєСѓРґР° РІ РіСЂСѓРґРё РјРѕРµР№ Р±СЊС‘С‚СЃСЏ СЃРµСЂРґС†Рµ, СЏ... РЅРµ РјР°СЃС‚РµСЂ РґРѕР»РіРёС… Рё Р·Р°РЅСѓРґРЅС‹С… СЂРµС‡РµР№.');
-INSERT INTO public."Superheroes" VALUES (5, 'Hulk', 'Р‘СЂСЋСЃ Р‘СЌРЅРЅРµСЂ', 'РЎРїР°СЃР°СЏ Р¶РёР·РЅСЊ РїРѕРґСЂРѕСЃС‚РєСѓ, РґРѕРєС‚РѕСЂ Р‘СЂСЋСЃ Р‘РµРЅРЅРµСЂ РѕРєР°Р·Р°Р»СЃСЏ РІ СЌРїРёС†РµРЅС‚СЂРµ РІР·СЂС‹РІР° РіР°РјРјР°-Р±РѕРјР±С‹, РїРѕСЃР»Рµ РєРѕС‚РѕСЂРѕРіРѕ РѕРЅ РѕР±РЅР°СЂСѓР¶РёР» Сѓ СЃРµР±СЏ РЅРµРѕР±С‹С‡РЅС‹Рµ СЃРїРѕСЃРѕР±РЅРѕСЃС‚Рё. РЎС‚РѕРёС‚ РєРѕРјСѓ-С‚Рѕ СЂР°Р·РѕР·Р»РёС‚СЊ РёР»Рё СЃРїСЂРѕРІРѕС†РёСЂРѕРІР°С‚СЊ РµРіРѕ, РєР°Рє РѕРЅ С‚РµСЂСЏРµС‚ РєРѕРЅС‚СЂРѕР»СЊ РЅР°Рґ СЃРѕР±РѕР№ Рё РїСЂРµРІСЂР°С‰Р°РµС‚СЃСЏ РІ Р·РµР»С‘РЅРѕРіРѕ РјРѕРЅСЃС‚СЂР° РҐР°Р»РєР°.', 'Р’ СЌС‚РѕРј Рё РµСЃС‚СЊ РјРѕР№ СЃРµРєСЂРµС‚, РљСЌРї. РЇ Р·РѕР» РїРѕСЃС‚РѕСЏРЅРЅРѕ.');
-INSERT INTO public."Superheroes" VALUES (6, 'Black Widow', 'РќР°С‚Р°Р»СЊСЏ  Р РѕРјР°РЅРѕРІР°', 'РќР°С‚Р°С€Р° Р РѕРјР°РЅРѕС„С„, РёР·РІРµСЃС‚РЅР°СЏ С‚Р°РєР¶Рµ РєР°Рє Р§РµСЂРЅР°СЏ Р’РґРѕРІР°, вЂ” СЌРєСЃРїРµСЂС‚ РІ С€РїРёРѕРЅР°Р¶Рµ Рё Р±РѕРµРІС‹С… РёСЃРєСѓСЃСЃС‚РІР°С…. РќР°С‚Р°С€Р° РІ С‚РµС‡РµРЅРёРµ РґРѕР»РіРѕРіРѕ РІСЂРµРјРµРЅРё РІС‹РїРѕР»РЅСЏР»Р° РїСЂРёРєР°Р·С‹ РљР“Р‘, РЅРѕ РїРѕР·Р¶Рµ СЃС‚Р°Р»Р° РѕРґРЅРёРј РёР· Р»СѓС‡С€РёС… Р°РіРµРЅС‚РѕРІ СЃР»СѓР¶Р±С‹ Р©.Р.Рў. Рё РїСЂРёСЃРѕРµРґРёРЅРёР»Р°СЃСЊ Рє РєРѕРјР°РЅРґРµ РњСЃС‚РёС‚РµР»РµР№.', 'РџРµСЂРІРѕРµ РїСЂР°РІРёР»Рѕ, РєРѕРіРґР° РїРѕРґР°РµС€СЊСЃСЏ РІ Р±РµРіР° вЂ” РЅРµ Р±РµРіРё, Р° РёРґРё.');
-INSERT INTO public."Superheroes" VALUES (7, 'Hawkeye', 'РљР»РёРЅС‚РѕРЅ  Р‘Р°СЂС‚РѕРЅ', 'Р‘Р»Р°РіРѕРґР°СЂСЏ СЃРІРѕРµР№ РёСЃРєР»СЋС‡РёС‚РµР»СЊРЅРѕР№ СЂРµР°РєС†РёРё, РєРѕРѕСЂРґРёРЅР°С†РёРё Рё РјРµС‚РєРѕСЃС‚Рё РЎРѕРєРѕР»РёРЅС‹Р№ Р“Р»Р°Р· вЂ” Р»СѓС‡С€РёР№ СЃС‚СЂРµР»РѕРє Рё Р»СѓС‡РЅРёРє, РёР·РІРµСЃС‚РЅС‹Р№ С‡РµР»РѕРІРµС‡РµСЃС‚РІСѓ.', 'РњС‹ СЃСЂР°Р¶Р°РµРјСЃСЏ СЃ СЂРѕР±РѕС‚Р°РјРё, Р° Сѓ РјРµРЅСЏ вЂ” Р»СѓРє Рё СЃС‚СЂРµР»С‹!');
+INSERT INTO public."Superheroes" VALUES (2, 'Captain America', 'Стивен Роджерс', 'Герой вне времени Стив Роджерс борется за свободу в качестве непоколебимого Капитана Америка.', 'Наша цель... спасти как можно больше людей. Но спасти всех невозможно, и если не принять это как данность, в другой раз погибнут все.');
+INSERT INTO public."Superheroes" VALUES (3, 'Ironman', 'Тони Старк', 'Эксцентричный гений, миллионер, дамский угодник и филантроп Тони Старк также является супергероем в броне, известным как Железный Человек.', 'Гений, миллиардер, плэйбой, филантроп.');
+INSERT INTO public."Superheroes" VALUES (4, 'Thor', 'Тор Одинсон', 'Могущественный бог грома Тор, достойный носить величайшее оружие во вселенной – волшебный молот Мьёльнир — никогда не перестаёт сражаться за правое дело и защищать любимую Землю.', 'Я Тор, сын Одина, и покуда в груди моей бьётся сердце, я... не мастер долгих и занудных речей.');
+INSERT INTO public."Superheroes" VALUES (5, 'Hulk', 'Брюс Бэннер', 'Спасая жизнь подростку, доктор Брюс Беннер оказался в эпицентре взрыва гамма-бомбы, после которого он обнаружил у себя необычные способности. Стоит кому-то разозлить или спровоцировать его, как он теряет контроль над собой и превращается в зелёного монстра Халка.', 'В этом и есть мой секрет, Кэп. Я зол постоянно.');
+INSERT INTO public."Superheroes" VALUES (6, 'Black Widow', 'Наталья  Романова', 'Наташа Романофф, известная также как Черная Вдова, — эксперт в шпионаже и боевых искусствах. Наташа в течение долгого времени выполняла приказы КГБ, но позже стала одним из лучших агентов службы Щ.И.Т. и присоединилась к команде Мстителей.', 'Первое правило, когда подаешься в бега — не беги, а иди.');
+INSERT INTO public."Superheroes" VALUES (7, 'Hawkeye', 'Клинтон  Бартон', 'Благодаря своей исключительной реакции, координации и меткости Соколиный Глаз — лучший стрелок и лучник, известный человечеству.', 'Мы сражаемся с роботами, а у меня — лук и стрелы!');
 INSERT INTO public."Superheroes" VALUES (100, 'SLON', 'dsadsa', 'dasdasd', 'dasdasd');
 INSERT INTO public."Superheroes" VALUES (99, 'Eagle', 'Yee', 'dsadasd', 'asdasda');
-INSERT INTO public."Superheroes" VALUES (1, 'Spider-Man', 'РџРёС‚РµСЂ РџР°СЂРєРµСЂ', 'РљРѕРіРґР° РѕР±С‹С‡РЅРѕРіРѕ РїРѕРґСЂРѕСЃС‚РєР° РџРёС‚РµСЂР° РџР°СЂРєРµСЂР° СѓРєСѓСЃРёР» СЂР°РґРёРѕР°РєС‚РёРІРЅС‹Р№ РїР°СѓРє, РµРіРѕ Р¶РёР·РЅСЊ РїРѕР»РЅРѕСЃС‚СЊСЋ РёР·РјРµРЅРёР»Р°СЃСЊ. РўРµРїРµСЂСЊ РѕРЅ Р±РѕСЂРµС‚СЃСЏ СЃ РїСЂРµСЃС‚СѓРїРЅРѕСЃС‚СЊСЋ, СЃРєСЂС‹РІР°СЏСЃСЊ РїРѕРґ РјР°СЃРєРѕР№ Р§РµР»РѕРІРµРєР°-РџР°СѓРєР°.', 'РЈ РІСЃРµС… РµСЃС‚СЊ С‚Р°Р№РЅС‹. Р§С‚Рѕ-С‚Рѕ СЃРєСЂС‹РІР°РµРј РјС‹, С‡С‚Рѕ-С‚Рѕ СЃРєСЂС‹РІР°СЋС‚ РѕС‚ РЅР°СЃ.');
+INSERT INTO public."Superheroes" VALUES (1, 'Spider-Man', 'Питер Паркер', 'Когда обычного подростка Питера Паркера укусил радиоактивный паук, его жизнь полностью изменилась. Теперь он борется с преступностью, скрываясь под маской Человека-Паука.', 'У всех есть тайны. Что-то скрываем мы, что-то скрывают от нас.');
 
 
 --
@@ -108,13 +313,13 @@ INSERT INTO public."Images" VALUES (101, 99, 'http://res.cloudinary.com/dcvrictq
 -- Data for Name: SuperPowers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public."SuperPowers" VALUES (6, 1, 'РЎСѓРїРµСЂСЃРёР»Р°, РџР°СѓС‡СЊРµ С‡СѓС‚СЊРµ, Р“РµРЅРёР°Р»СЊРЅС‹Р№ РёРЅС‚РµР»Р»РµРєС‚, РЎСѓРїРµСЂР»РѕРІРєРѕСЃС‚СЊ, РџРѕРІС‹С€РµРЅРЅР°СЏ СЂРµРіРµРЅРµСЂР°С†РёСЏ');
-INSERT INTO public."SuperPowers" VALUES (11, 2, 'РЈСЃРёР»РµРЅРЅС‹Рµ С„РёР·РёС‡РµСЃРєРёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё, РќР°РІС‹РєРё СЂСѓРєРѕРїР°С€РЅРѕРіРѕ Р±РѕСЏ, РЎС‚СЂР°С‚РµРіРёС‡РµСЃРєРѕРµ РјС‹С€Р»РµРЅРёРµ, Р­РєСЃРїРµСЂС‚ РїРѕ РІРѕРµРЅРЅРѕРјСѓ РґРµР»Сѓ, РџСЂРµРІРѕСЃС…РѕРґРЅС‹Р№ Р°С‚Р»РµС‚');
-INSERT INTO public."SuperPowers" VALUES (17, 3, 'Р“РµРЅРёР°Р»СЊРЅС‹Р№ РёРЅС‚РµР»Р»РµРєС‚, Р’С‹РґР°СЋС‰РёР№СЃСЏ РёР·РѕР±СЂРµС‚Р°С‚РµР»СЊ Рё РёРЅР¶РµРЅРµСЂ, РњР°СЃС‚РµСЂ СЂСѓРєРѕРїР°С€РЅРѕРіРѕ Р±РѕСЏ, РћР±С€РёСЂРЅС‹Рµ Р·РЅР°РЅРёСЏ РІРѕ РјРЅРѕРіРёС… РѕР±Р»Р°СЃС‚СЏС… РЅР°СѓРєРё, Р‘РѕР»СЊС€РёРµ С„РёРЅР°РЅСЃРѕРІС‹Рµ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё');
-INSERT INTO public."SuperPowers" VALUES (24, 4, 'РќРµС‡РµР»РѕРІРµС‡РµСЃРєР°СЏ СЃРёР»Р°, РЎРїРѕСЃРѕР±РЅРѕСЃС‚СЊ Р»РµС‚Р°С‚СЊ, РЈРїСЂР°РІР»РµРЅРёРµ РїРѕРіРѕРґРѕР№, РџРѕРІС‹С€РµРЅРЅР°СЏ РІС‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ, Р’РѕР»С€РµР±РЅС‹Р№ РјРѕР»РѕС‚ РњСЊС‘Р»СЊРЅРёСЂ, РЈРґР»РёРЅС‘РЅРЅС‹Р№ РїРµСЂРёРѕРґ Р¶РёР·РЅРё');
-INSERT INTO public."SuperPowers" VALUES (31, 5, 'РЎРІРµСЂС…СЂР°Р·РІРёС‚Р°СЏ РјСѓСЃРєСѓР»Р°С‚СѓСЂР°, Р“РµРЅРёР°Р»СЊРЅС‹Р№ РёРЅС‚РµР»Р»РµРєС‚, РЎРєРѕСЂРѕСЃС‚СЊ Рё РїСЂРѕС‡РЅРѕСЃС‚СЊ, РђРґР°РїС‚Р°С†РёСЏ Рє СЂР°Р·Р»РёС‡РЅС‹Рј СЃСЂРµРґР°Рј, РќРµС‡РµР»РѕРІРµС‡РµСЃРєР°СЏ РІС‹РЅРѕСЃР»РёРІРѕСЃС‚СЊ, РЎРІРµСЂС…С‡РµР»РѕРІРµС‡РµСЃРєР°СЏ СЃРёР»Р°');
-INSERT INTO public."SuperPowers" VALUES (37, 6, 'Р’Р»Р°РґРµРЅРёРµ Р±РѕРµРІС‹РјРё РёСЃРєСѓСЃСЃС‚РІР°РјРё, Р—Р°РјРµРґР»РµРЅРЅРѕРµ СЃС‚Р°СЂРµРЅРёРµ, РЈСЃРёР»РµРЅРЅР°СЏ РёРјРјСѓРЅРЅР°СЏ Р·Р°С‰РёС‚Р°, Р’Р»Р°РґРµРЅРёРµ РЅР°РІС‹РєР°РјРё С€РїРёРѕРЅР°Р¶Р°, РџСЂРµРІРѕСЃС…РѕРґРЅР°СЏ СЃРїРѕСЂС‚РёРІРЅР°СЏ С„РѕСЂРјР°, РЈР»СѓС‡С€РµРЅРЅС‹Рµ С„РёР·РёС‡РµСЃРєРёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРєРё');
-INSERT INTO public."SuperPowers" VALUES (40, 7, 'Р¤РµРЅРѕРјРµРЅР°Р»СЊРЅР°СЏ РјРµС‚РєРѕСЃС‚СЊ, РђСЂСЃРµРЅР°Р» РёР· СЃС‚СЂРµР» СЃ СЂР°Р·Р»РёС‡РЅС‹РјРё СЌС„С„РµРєС‚Р°РјРё, РќР°РІС‹РєРё РІ Р°РєСЂРѕР±Р°С‚РёРєРµ, РІРѕР·РґСѓС€РЅРѕР№ РіРёРјРЅР°СЃС‚РёРєРµ Рё СЂСѓРєРѕРїР°С€РЅРѕРјСѓ Р±РѕСЋ');
+INSERT INTO public."SuperPowers" VALUES (6, 1, 'Суперсила, Паучье чутье, Гениальный интеллект, Суперловкость, Повышенная регенерация');
+INSERT INTO public."SuperPowers" VALUES (11, 2, 'Усиленные физические характеристики, Навыки рукопашного боя, Стратегическое мышление, Эксперт по военному делу, Превосходный атлет');
+INSERT INTO public."SuperPowers" VALUES (17, 3, 'Гениальный интеллект, Выдающийся изобретатель и инженер, Мастер рукопашного боя, Обширные знания во многих областях науки, Большие финансовые возможности');
+INSERT INTO public."SuperPowers" VALUES (24, 4, 'Нечеловеческая сила, Способность летать, Управление погодой, Повышенная выносливость, Волшебный молот Мьёльнир, Удлинённый период жизни');
+INSERT INTO public."SuperPowers" VALUES (31, 5, 'Сверхразвитая мускулатура, Гениальный интеллект, Скорость и прочность, Адаптация к различным средам, Нечеловеческая выносливость, Сверхчеловеческая сила');
+INSERT INTO public."SuperPowers" VALUES (37, 6, 'Владение боевыми искусствами, Замедленное старение, Усиленная иммунная защита, Владение навыками шпионажа, Превосходная спортивная форма, Улучшенные физические характеристики');
+INSERT INTO public."SuperPowers" VALUES (40, 7, 'Феноменальная меткость, Арсенал из стрел с различными эффектами, Навыки в акробатике, воздушной гимнастике и рукопашному бою');
 INSERT INTO public."SuperPowers" VALUES (59, 82, 'xvccvcvcv');
 INSERT INTO public."SuperPowers" VALUES (75, 100, 'sdasdas');
 INSERT INTO public."SuperPowers" VALUES (74, 99, 'asdasdasd');
@@ -152,4 +357,3 @@ SELECT pg_catalog.setval('public."Superheroes_ID_seq"', 100, true);
 --
 -- PostgreSQL database dump complete
 --
-
